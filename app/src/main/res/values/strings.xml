@@ -5,4 +5,8 @@
     <string name="activity_main_entrar">Entrar</string>
     <string name="activity_main_esqueci">Esqueci a senha</string>
     <string name="activity_main_cadastrar">Cadastrar senha</string>
+    <string name="activity_tela_selecao_racoes">Rações</string>
+    <string name="activity_tela_selecao_pets">Pets</string>
+    <string name="activity_tela_selecao_alimentadores">Alimentadores</string>
+    <string name="activity_tela_selecao_agendamento">Agendamentos</string>
 </resources>
