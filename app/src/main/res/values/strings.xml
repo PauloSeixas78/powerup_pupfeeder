@@ -10,4 +10,7 @@
     <string name="activity_tela_selecao_pets">Pets</string>
     <string name="activity_tela_selecao_alimentadores">Alimentadores</string>
     <string name="activity_tela_selecao_agendamento">Agendamentos</string>
+
+    <string name="activity_tela_lista_racoes_nova">Nova ração</string>
+    <string name="actigity_tela_lista_racoes_cadastradas">Rações cadastradas </string>
 </resources>
