@@ -9,7 +9,7 @@
     tools:context=".TelaListaRacoes">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonListaNovaRacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_tela_lista_racoes_nova" />

@@ -6,6 +6,7 @@
     <string name="activity_main_falha_autenticacao">Usuário ou senha incorretos</string>
     <string name="activity_main_esqueci">Esqueci a senha</string>
     <string name="activity_main_cadastrar">Cadastrar senha</string>
+
     <string name="activity_tela_selecao_racoes">Rações</string>
     <string name="activity_tela_selecao_pets">Pets</string>
     <string name="activity_tela_selecao_alimentadores">Alimentadores</string>
@@ -13,4 +14,24 @@
 
     <string name="activity_tela_lista_racoes_nova">Nova ração</string>
     <string name="actigity_tela_lista_racoes_cadastradas">Rações cadastradas </string>
+
+    <string name="activity_tela_cadastro_racoes_marca">Marca</string>
+    <string name="activity_tela_cadastro_racoes_quantidade">Quantidade</string>
+    <string name="activity_tela_cadastro_racoes_tipo">Tipo</string>
+    <string-array name="activity_tela_cadastro_racoes_tipo_lista">
+        <item>Standard</item>
+        <item>Premium</item>
+        <item>Super Premium</item>
+    </string-array>
+    <string name="activity_tela_cadastro_racoes_porte">Porte</string>
+    <string-array name="activity_tela_cadastro_racoes_porte_lista">
+        <item>Filhote</item>
+        <item>Adulto</item>
+        <item>Raças pequenas</item>
+        <item>Raças médias</item>
+        <item>Raças grandes</item>
+    </string-array>
+    <string name="activity_tela_cadastro_racoes_salvar">Salvar</string>
+
+
 </resources>
