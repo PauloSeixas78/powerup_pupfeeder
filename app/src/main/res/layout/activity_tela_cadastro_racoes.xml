@@ -15,7 +15,7 @@
         android:text="@string/activity_tela_cadastro_racoes_marca" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextTelaCadstroRacoesMarca"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
@@ -30,7 +30,7 @@
         android:text="@string/activity_tela_cadastro_racoes_quantidade" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editTextTelaCadastroRacoesQuantidade"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
@@ -45,7 +45,7 @@
         android:text="@string/activity_tela_cadastro_racoes_tipo" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerTelcCadastroRacoesTipo"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:entries="@array/activity_tela_cadastro_racoes_tipo_lista" />
@@ -58,15 +58,16 @@
         android:text="@string/activity_tela_cadastro_racoes_porte" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerTelaCadastroRacoesPorte"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:entries="@array/activity_tela_cadastro_racoes_porte_lista" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonTelaCadastroRacoesSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/activity_tela_cadastro_racoes_salvar" />
+        android:text="@string/activity_tela_cadastro_racoes_salvar"
+        app:toggleCheckedStateOnClick="false" />
 </LinearLayout>

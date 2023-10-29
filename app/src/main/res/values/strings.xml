@@ -32,6 +32,9 @@
         <item>Raças grandes</item>
     </string-array>
     <string name="activity_tela_cadastro_racoes_salvar">Salvar</string>
+    <string name="activity_tela_cadastro_racoes_salvo_com_sucesso">Ração salva com sucesso</string>
+    <string name="activity_tela_cadastro_racoes_erro_ao_salvar">Erro ao salvar ração</string>
+    <string name="activity_tela_cadastro_racoes_campos_vazios">Favor preencher todos os campos</string>
 
 
 </resources>
