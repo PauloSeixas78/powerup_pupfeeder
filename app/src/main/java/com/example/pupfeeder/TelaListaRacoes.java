@@ -3,13 +3,22 @@ package com.example.pupfeeder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TelaListaRacoes extends AppCompatActivity {
+
+    DatabaseHelper helper;
+
+    ArrayList<Racoes> racoescadastradas;
 
     ListView listaracoes;
 
@@ -19,6 +28,10 @@ public class TelaListaRacoes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_lista_racoes);
+
+        helper = new DatabaseHelper(this);
+
+        racoescadastradas = new ArrayList<Racoes>();
 
         listaracoes = (ListView) findViewById(R.id.ListViewListaRacoes);
 
@@ -31,11 +44,24 @@ public class TelaListaRacoes extends AppCompatActivity {
             }
         });
 
-        String [] racoes = new String[]{"Premium","Resto de ontem","Pedigree","Filhotes"};
-
-        ArrayAdapter <String> listaracoesadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,racoes);
+        ArrayAdapter <String> listaracoesadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,lerRacoes());
 
         listaracoes.setAdapter(listaracoesadapter);
 
+    }
+
+    private String [] lerRacoes(){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id,marca,quantidade,tipo,porte from racoes",null);
+        cursor.moveToFirst();
+        String [] racoeslidas = new String[cursor.getCount()];
+        for(int item = 0; item <cursor.getCount();item++){
+            racoescadastradas.add(new Racoes(cursor.getLong(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),cursor.getString(4)));
+            racoeslidas[item] = cursor.getString(1);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return racoeslidas;
     }
 }

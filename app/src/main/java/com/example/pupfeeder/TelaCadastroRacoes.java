@@ -3,6 +3,7 @@ package com.example.pupfeeder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -67,6 +68,8 @@ public class TelaCadastroRacoes extends AppCompatActivity {
         {
             Toast.makeText(this, getString(R.string.activity_tela_cadastro_racoes_campos_vazios),Toast.LENGTH_SHORT).show();
         }
+
+        startActivity(new Intent(TelaCadastroRacoes.this, TelaListaRacoes.class));
 
 
 
