@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -21,11 +22,13 @@ public class TelaCadastroRacoes extends AppCompatActivity {
     Spinner tipo;
     Spinner porte;
     Button salvar;
+    String racao_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_cadastro_racoes);
+        racao_id = getIntent().getStringExtra("racao_id");
 
         marca = findViewById(R.id.editTextTelaCadstroRacoesMarca);
         quantidade = findViewById(R.id.editTextTelaCadastroRacoesQuantidade);
@@ -34,8 +37,13 @@ public class TelaCadastroRacoes extends AppCompatActivity {
         salvar = findViewById(R.id.buttonTelaCadastroRacoesSalvar);
         helper = new DatabaseHelper(this);
 
-        marca.setText("");
-        quantidade.setText("");
+        if(racao_id!=null){
+            prepararEdicao();
+        }else{
+            marca.setText("");
+            quantidade.setText("");
+        }
+
 
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +54,25 @@ public class TelaCadastroRacoes extends AppCompatActivity {
 
     }
 
+    public void prepararEdicao(){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT marca, quantidade, tipo, porte from racoes WHERE _id = ?",new String[]{racao_id});
+        cursor.moveToFirst();
+        marca.setText(cursor.getString(0));
+        quantidade.setText(cursor.getString(1));
+        String[] tipos = getResources().getStringArray(R.array.activity_tela_cadastro_racoes_tipo_lista);
+        for(int item=0;item < tipos.length;item++){
+            if(tipos[item].equals(cursor.getString(2))){
+                tipo.setSelection(item);
+            }
+        }
+        String[] portes = getResources().getStringArray(R.array.activity_tela_cadastro_racoes_porte_lista);
+        for(int item=0;item < portes.length;item++){
+            if(portes[item].equals(cursor.getString(3)));
+        }
+    }
+
+
     public void salvarRacao(View view) {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues valores = new ContentValues();
@@ -54,9 +81,12 @@ public class TelaCadastroRacoes extends AppCompatActivity {
             valores.put("quantidade", quantidade.getText().toString());
             valores.put("tipo", tipo.getSelectedItem().toString());
             valores.put("porte", porte.getSelectedItem().toString());
-
-
-            long resultado = db.insert("racoes", null, valores);
+            long resultado;
+            if(racao_id == null) {
+                resultado = db.insert("racoes", null, valores);
+            }else{
+                resultado = db.update("racoes",valores,"_id = ?",new String[]{racao_id});
+            }
 
             if (resultado != -1) {
                 Toast.makeText(this, getString(R.string.activity_tela_cadastro_racoes_salvo_com_sucesso), Toast.LENGTH_SHORT).show();

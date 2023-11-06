@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -47,6 +48,16 @@ public class TelaListaRacoes extends AppCompatActivity {
         ArrayAdapter <String> listaracoesadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,lerRacoes());
 
         listaracoes.setAdapter(listaracoesadapter);
+
+        listaracoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(TelaListaRacoes.this, TelaCadastroRacoes.class);
+                intent.putExtra("racao_id",racoescadastradas.get(i).getId().toString());
+                startActivity(intent);
+            }
+        });
+
 
     }
 
