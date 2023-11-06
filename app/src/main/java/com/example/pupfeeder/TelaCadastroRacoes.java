@@ -22,6 +22,7 @@ public class TelaCadastroRacoes extends AppCompatActivity {
     Spinner tipo;
     Spinner porte;
     Button salvar;
+    Button excluir;
     String racao_id;
 
     @Override
@@ -35,6 +36,7 @@ public class TelaCadastroRacoes extends AppCompatActivity {
         tipo = findViewById(R.id.spinnerTelcCadastroRacoesTipo);
         porte = findViewById(R.id.spinnerTelaCadastroRacoesPorte);
         salvar = findViewById(R.id.buttonTelaCadastroRacoesSalvar);
+        excluir = findViewById(R.id.buttonTelaCadastroRacoesExcluir);
         helper = new DatabaseHelper(this);
 
         if(racao_id!=null){
@@ -44,11 +46,17 @@ public class TelaCadastroRacoes extends AppCompatActivity {
             quantidade.setText("");
         }
 
-
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 salvarRacao(view);
+            }
+        });
+
+        excluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excluirRacao(view);
             }
         });
 
@@ -101,8 +109,17 @@ public class TelaCadastroRacoes extends AppCompatActivity {
 
         startActivity(new Intent(TelaCadastroRacoes.this, TelaListaRacoes.class));
 
+    }
 
-
+    public void excluirRacao(View view){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        long resultado = db.delete("racoes","_id = ?",new String[]{racao_id});
+        if (resultado != -1) {
+            Toast.makeText(this, "Ração excluída com sucesso", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Falha ao excluir a ração", Toast.LENGTH_LONG).show();
+        }
+        startActivity(new Intent(TelaCadastroRacoes.this, TelaListaRacoes.class));
     }
 
 }

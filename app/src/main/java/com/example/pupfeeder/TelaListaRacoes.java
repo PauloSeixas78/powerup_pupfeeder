@@ -58,6 +58,16 @@ public class TelaListaRacoes extends AppCompatActivity {
             }
         });
 
+        listaracoes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SQLiteDatabase db = helper.getWritableDatabase();
+                db.delete("racoes","_id = ?",new String[]{racoescadastradas.get(i).getId().toString()});
+
+                return true;
+            }
+        });
+
 
     }
 
@@ -75,4 +85,8 @@ public class TelaListaRacoes extends AppCompatActivity {
 
         return racoeslidas;
     }
+
+
+
+
 }
